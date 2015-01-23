@@ -1,0 +1,25 @@
+acl localnet {
+    10.1.0.0/16;
+    172.17.42.1/32;
+    127.0.0.1/32;
+};
+
+options {
+    directory "/var/cache/bind";
+    version "unknown";
+    dump-file "/var/lib/bind/cache_dump.db";
+    statistics-file "/var/lib/bind/named_stats.txt";
+    zone-statistics yes;
+
+    allow-recursion { localnet; };
+
+    max-ncache-ttl 300;
+    max-cache-ttl 3600;
+    lame-ttl 600;
+    max-cache-size 512M;
+
+    // IIJ DNS Server
+    forwarders { 210.130.0.2; 210.130.1.2; };
+    filter-aaaa-on-v4 yes;
+    listen-on port 5300 { localnet; };
+};
