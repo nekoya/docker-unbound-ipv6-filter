@@ -5,6 +5,7 @@ machine:
 dependencies:
   override:
     - docker info
+    - docker version
     - docker build -t nekoya/unbound-ipv6-filter .
     - docker run --name unbound -d -v `pwd`/conf.d:/etc/unbound/conf.d nekoya/unbound-ipv6-filter
 
