@@ -1,0 +1,13 @@
+machine:
+  services:
+    - docker
+
+dependencies:
+  override:
+    - docker info
+    - docker build -t nekoya/unbound-ipv6-filter .
+    - docker run --name unbound -d -v `pwd`/conf.d:/etc/unbound/conf.d nekoya/unbound-ipv6-filter
+
+test:
+  override:
+    - docker exec unbound dig @localhost myhost.dev.local
