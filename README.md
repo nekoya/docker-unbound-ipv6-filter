@@ -15,7 +15,7 @@
 `local.conf`を格納したディレクトリを、コンテナの`/etc/unbound/conf.d`としてマウントして起動します。
 
 ```
-sudo docker run -d -p 53:53/udp -v /path/to:/etc/unbound/conf.d --name unbound nekoya/unbound
+sudo docker run -d -p 53:53/udp -v /path/to:/etc/unbound/conf.d --name unbound nekoya/unbound-ipv6-filter
 ```
 
 とりあえず試してみるには、このリポジトリの`conf.d`をマウントしてみるとよいでしょう。
